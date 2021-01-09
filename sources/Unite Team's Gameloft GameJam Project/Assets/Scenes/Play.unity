@@ -252,6 +252,7 @@ MonoBehaviour:
   _eachHorizontalSwingDuration: 2
   _newBox: {fileID: 0}
   _dropAndSpawnBoxInterval: 2
+  _mainCamera: {fileID: 519420031}
 --- !u!1 &2112555153
 GameObject:
   m_ObjectHideFlags: 0
