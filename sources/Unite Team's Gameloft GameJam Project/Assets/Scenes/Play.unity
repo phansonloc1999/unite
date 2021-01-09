@@ -250,6 +250,8 @@ MonoBehaviour:
   _boxPrefab: {fileID: 4077288820712146120, guid: b6fe169074620a54eadecf838d7cd350,
     type: 3}
   _eachHorizontalSwingDuration: 2
+  _newBox: {fileID: 0}
+  _dropAndSpawnBoxInterval: 2
 --- !u!1 &2112555153
 GameObject:
   m_ObjectHideFlags: 0
