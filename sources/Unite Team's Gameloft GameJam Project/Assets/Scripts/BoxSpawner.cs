@@ -96,8 +96,7 @@ public class BoxSpawner : MonoBehaviour
     private void UpdateCameraSpawnerPos()
     {
         _mainCamera.transform.position = new Vector3(_mainCamera.transform.position.x, _newBox.transform.position.y + _camHeight / 8.0f, _mainCamera.transform.position.z);
-        var camTopCenterPos = _mainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height, 0));
-        UpdateCameraSpawnerPos();
-        transform.position = new Vector3(camTopCenterPos.x, camTopCenterPos.y, transform.position.z);
+        GetCamLeftRightPos();
+        transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y, transform.position.z);
     }
 }
