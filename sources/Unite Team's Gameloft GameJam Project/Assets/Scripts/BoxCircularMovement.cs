@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BoxCircularMovement : MonoBehaviour
 {
-    [SerializeField] private float _rotateSpeed = 5f;
-    [SerializeField] private float _radius = 0.1f;
+    [SerializeField] private float _rotateSpeed = 2f;
+    [SerializeField] private float _radius = 2f;
 
     private Vector2 _centre;
     private float _angle;
@@ -21,5 +22,10 @@ public class BoxCircularMovement : MonoBehaviour
 
         var offset = new Vector2(Mathf.Sin(_angle), Mathf.Cos(_angle)) * _radius;
         transform.position = _centre + offset;
+    }
+
+    internal void Disable()
+    {
+        enabled = false;
     }
 }

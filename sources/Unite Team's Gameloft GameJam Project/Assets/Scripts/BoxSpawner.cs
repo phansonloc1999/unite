@@ -30,7 +30,7 @@ public class BoxSpawner : MonoBehaviour
         Init();
 
         SpawnNewBox();
-        BackForthHorizontalSwing();
+        RandomizeBoxMovement();
     }
 
     // Update is called once per frame
@@ -43,12 +43,14 @@ public class BoxSpawner : MonoBehaviour
                 IEnumerator MyCouroutine()
                 {
                     _canDropNewBox = false;
+
                     DropNewBox();
                     yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
                     UpdateCameraSpawnerPos();
                     GetCamLeftRightPos();
                     SpawnNewBox();
-                    BackForthHorizontalSwing();
+                    RandomizeBoxMovement();
+
                     _canDropNewBox = true;
                     yield break;
                 }
@@ -72,6 +74,7 @@ public class BoxSpawner : MonoBehaviour
         _newBoxMoveSequence.Kill();
         // Reapply gravity scale to new box
         _newBox.GetComponent<Rigidbody2D>().gravityScale = 1;
+        _newBox.GetComponent<BoxCircularMovement>()?.Disable();
     }
 
     private void SpawnNewBox()
@@ -98,5 +101,25 @@ public class BoxSpawner : MonoBehaviour
         _mainCamera.transform.position = new Vector3(_mainCamera.transform.position.x, _newBox.transform.position.y + _camHeight / 8.0f, _mainCamera.transform.position.z);
         GetCamLeftRightPos();
         transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y, transform.position.z);
+    }
+
+    private void RandomizeBoxMovement()
+    {
+        var randResult = Random.Range(0, 2);
+        if (randResult == 0)
+        {
+            BackForthHorizontalSwing();
+        }
+        else
+        {
+            BoxCircularMovement();
+        }
+    }
+
+    private void BoxCircularMovement()
+    {
+        var camTopCenterPos = _mainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height, 0));
+        _newBox.transform.position = new Vector3(camTopCenterPos.x, camTopCenterPos.y, transform.position.z);
+        _newBox.AddComponent<BoxCircularMovement>();
     }
 }
