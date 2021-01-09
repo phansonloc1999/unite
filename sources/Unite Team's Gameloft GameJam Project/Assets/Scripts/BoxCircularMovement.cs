@@ -24,8 +24,8 @@ public class BoxCircularMovement : MonoBehaviour
         transform.position = _centre + offset;
     }
 
-    internal void Disable()
+    public void Remove()
     {
-        enabled = false;
+        Destroy(this);
     }
 }

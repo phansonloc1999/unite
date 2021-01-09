@@ -38,12 +38,11 @@ public class BoxSpawner : MonoBehaviour
     {
         if (_canDropNewBox)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0)
             {
                 IEnumerator MyCouroutine()
                 {
                     _canDropNewBox = false;
-
                     DropNewBox();
                     yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
                     UpdateCameraSpawnerPos();
@@ -71,10 +70,12 @@ public class BoxSpawner : MonoBehaviour
 
     private void DropNewBox()
     {
+        _newBox.GetComponent<BoxCircularMovement>()?.Remove();
         _newBoxMoveSequence.Kill();
+
         // Reapply gravity scale to new box
         _newBox.GetComponent<Rigidbody2D>().gravityScale = 1;
-        _newBox.GetComponent<BoxCircularMovement>()?.Disable();
+
     }
 
     private void SpawnNewBox()
