@@ -12,6 +12,8 @@ public class BoxSpawner : MonoBehaviour
 
     [SerializeField] private float _dropAndSpawnBoxInterval;
 
+    [SerializeField] private float _updateCameraPosDuration;
+
     [SerializeField] private Camera _mainCamera;
 
     private Sequence _newBoxMoveSequence;
@@ -46,6 +48,7 @@ public class BoxSpawner : MonoBehaviour
                     DropNewBox();
                     yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
                     UpdateCameraSpawnerPos();
+                    yield return new WaitForSeconds(_updateCameraPosDuration);
                     GetCamLeftRightPos();
                     SpawnNewBox();
                     RandomizeBoxMovement();
@@ -99,9 +102,12 @@ public class BoxSpawner : MonoBehaviour
 
     private void UpdateCameraSpawnerPos()
     {
-        _mainCamera.transform.position = new Vector3(_mainCamera.transform.position.x, _newBox.transform.position.y + _camHeight / 8.0f, _mainCamera.transform.position.z);
-        GetCamLeftRightPos();
-        transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y, transform.position.z);
+        _mainCamera.transform.DOMove(new Vector3(_mainCamera.transform.position.x, _newBox.transform.position.y + _camHeight / 8.0f, _mainCamera.transform.position.z), _updateCameraPosDuration)
+        .OnComplete(() =>
+        {
+            GetCamLeftRightPos();
+            transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y, transform.position.z);
+        });
     }
 
     private void RandomizeBoxMovement()
@@ -113,7 +119,8 @@ public class BoxSpawner : MonoBehaviour
         }
         else
         {
-            BoxCircularMovement();
+            BackForthHorizontalSwing();
+            // BoxCircularMovement();
         }
     }
 
