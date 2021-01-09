@@ -22,6 +22,8 @@ public class BoxSpawner : MonoBehaviour
 
     private static float _camHeight;
 
+    private static bool _canDropNewBox = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,18 +36,20 @@ public class BoxSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_newBox != null)
+        if (_canDropNewBox)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 IEnumerator MyCouroutine()
                 {
+                    _canDropNewBox = false;
                     DropNewBox();
                     yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
                     UpdateCameraSpawnerPos();
                     GetCamLeftRightPos();
                     SpawnNewBox();
                     BackForthHorizontalSwing();
+                    _canDropNewBox = true;
                     yield break;
                 }
                 StartCoroutine(MyCouroutine());
@@ -93,6 +97,7 @@ public class BoxSpawner : MonoBehaviour
     {
         _mainCamera.transform.position = new Vector3(_mainCamera.transform.position.x, _newBox.transform.position.y + _camHeight / 8.0f, _mainCamera.transform.position.z);
         var camTopCenterPos = _mainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height, 0));
+        UpdateCameraSpawnerPos();
         transform.position = new Vector3(camTopCenterPos.x, camTopCenterPos.y, transform.position.z);
     }
 }
