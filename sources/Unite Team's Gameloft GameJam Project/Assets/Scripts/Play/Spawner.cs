@@ -104,10 +104,12 @@ public class Spawner : MonoBehaviour
 
     private void UpdateCameraSpawnerPos()
     {
-        _mainCamera.transform.DOMove(new Vector3(_mainCamera.transform.position.x, _newBox.transform.position.y + _camHeight / 8.0f, _mainCamera.transform.position.z), _updateCameraPosDuration)
+        // Move camera
+        _mainCamera.transform.DOMove(new Vector3(_mainCamera.transform.position.x, _newBox.transform.position.y + _camHeight / 3.0f, _mainCamera.transform.position.z), _updateCameraPosDuration)
         .OnComplete(() =>
         {
             GetCamLeftRightPos();
+            // Move spawner game object
             transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y - _offsetYfromTop, transform.position.z);
         });
     }

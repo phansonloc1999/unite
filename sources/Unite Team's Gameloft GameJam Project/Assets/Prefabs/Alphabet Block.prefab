@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3239144796776541661}
   - component: {fileID: -4624786941804344106}
   m_Layer: 0
-  m_Name: Box
+  m_Name: Alphabet Block
   m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,9 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: 21300000, guid: 36a8f225fab0e1d4c94b1a6c2e2bed49, type: 3}
-  - {fileID: 21300000, guid: dae933beb15a97249965ff11b024e30e, type: 3}
-  - {fileID: 21300000, guid: d71a3f805b07e4c48895d9465e82d610, type: 3}
-  - {fileID: 21300000, guid: cfc4f3815fd9c73459ecc05eeaa8c924, type: 3}
-  - {fileID: 21300000, guid: 15aba457b5a0b72418b70bff9e474f0e, type: 3}
   - {fileID: 21300000, guid: 0163d8cf5cd4fd840af12670858f3588, type: 3}
+  - {fileID: 21300000, guid: 15aba457b5a0b72418b70bff9e474f0e, type: 3}
+  - {fileID: 21300000, guid: d71a3f805b07e4c48895d9465e82d610, type: 3}
