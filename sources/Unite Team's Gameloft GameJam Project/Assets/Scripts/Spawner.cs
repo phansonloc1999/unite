@@ -130,4 +130,9 @@ public class Spawner : MonoBehaviour
         _newBox.transform.position = new Vector3(camTopCenterPos.x, camTopCenterPos.y, transform.position.z);
         _newBox.AddComponent<BoxCircularMovement>();
     }
+
+    private void OnDestroy()
+    {
+        _newBoxMoveSequence.Kill();
+    }
 }
