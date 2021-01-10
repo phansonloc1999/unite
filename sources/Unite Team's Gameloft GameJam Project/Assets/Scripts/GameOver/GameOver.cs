@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
+    [SerializeField] private Text _scoreTxt;
     // Start is called before the first frame update
     void Start()
     {
-
+        _scoreTxt.text = Score._currentScore.ToString();
     }
 
     // Update is called once per frame

@@ -75,6 +75,9 @@ public class Spawner : MonoBehaviour
         _camHeight = _mainCamera.orthographicSize * 2.0f;
 
         if (_dadsHand == null) _dadsHand = GameObject.Find("Dad'sHand");
+
+        _canDropNewBox = true;
+        Pause._gamePaused = false;
     }
 
     private void DropNewBox()
@@ -85,15 +88,18 @@ public class Spawner : MonoBehaviour
 
         // Reapply gravity scale to new box
         _newBox.GetComponent<Rigidbody2D>().gravityScale = 1;
+        Score.Increase();
+        _dadsHand.transform.parent = transform.root;
     }
 
     private void SpawnNewBox()
     {
         _newBox = Instantiate(_prefabs[Random.Range(0, _prefabs.Length)], transform.position, Quaternion.identity);
 
+        // Attach Dad's hand above
         _dadsHand.transform.parent = _newBox.transform;
         var dadSpriteRend = _dadsHand.GetComponent<SpriteRenderer>();
-        _dadsHand.transform.localPosition = new Vector3(0, _newBox.GetComponent<SpriteRenderer>().size.y / 2 + dadSpriteRend.size.y / 2, 0);
+        _dadsHand.transform.localPosition = new Vector3(0, _newBox.GetComponent<SpriteRenderer>().bounds.size.y / 2 + dadSpriteRend.bounds.size.y / 2 - 0.5f, 0);
         _dadsHand.transform.rotation = Quaternion.identity;
         dadSpriteRend.enabled = true;
     }
