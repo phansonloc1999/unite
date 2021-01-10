@@ -2,9 +2,9 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class BoxSpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _boxPrefab;
+    [SerializeField] private GameObject[] _prefabs;
 
     [SerializeField] private float _eachHorizontalSwingDuration;
 
@@ -83,7 +83,7 @@ public class BoxSpawner : MonoBehaviour
 
     private void SpawnNewBox()
     {
-        _newBox = Instantiate(_boxPrefab, transform.position, Quaternion.identity);
+        _newBox = Instantiate(_prefabs[Random.Range(0, _prefabs.Length)], transform.position, Quaternion.identity);
     }
 
     private void BackForthHorizontalSwing()

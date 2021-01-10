@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 976323256}
   - component: {fileID: 976323257}
   m_Layer: 0
-  m_Name: BoxSpawner
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,8 +317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2175602b1d29cf84fb125b4284331dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boxPrefab: {fileID: 4077288820712146120, guid: b6fe169074620a54eadecf838d7cd350,
-    type: 3}
+  _prefabs:
+  - {fileID: 2125194653781531389, guid: c0689d83984b9064f87e5be2802cf5c0, type: 3}
+  - {fileID: 9051223864542002728, guid: 06ab2fe9c7dc805479374cd7bf4296e9, type: 3}
+  - {fileID: 4077288820712146120, guid: b6fe169074620a54eadecf838d7cd350, type: 3}
   _eachHorizontalSwingDuration: 2
   _newBox: {fileID: 0}
   _dropAndSpawnBoxInterval: 2
