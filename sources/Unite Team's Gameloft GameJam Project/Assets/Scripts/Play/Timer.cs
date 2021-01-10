@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         _remainingTime -= Time.deltaTime;
-        _text.text = "Time left: " + (int)_remainingTime;
+        _text.text = ((int)_remainingTime).ToString();
 
         if (_remainingTime <= 0)
         {
