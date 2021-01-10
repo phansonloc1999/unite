@@ -27,6 +27,7 @@ public class Spawner : MonoBehaviour
     private static bool _canDropNewBox = true;
 
     private static float _offsetYfromTop = 0.5f;
+    private static GameObject _dadsHand = null;
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +47,6 @@ public class Spawner : MonoBehaviour
             {
                 IEnumerator MyCouroutine()
                 {
-
                     _canDropNewBox = false;
                     DropNewBox();
                     yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
@@ -58,9 +58,7 @@ public class Spawner : MonoBehaviour
                     RandomizeBoxMovement();
 
                     _canDropNewBox = true;
-
                     yield break;
-
                 }
                 StartCoroutine(MyCouroutine());
             }
@@ -75,21 +73,29 @@ public class Spawner : MonoBehaviour
         transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y - _offsetYfromTop, 0);
 
         _camHeight = _mainCamera.orthographicSize * 2.0f;
+
+        if (_dadsHand == null) _dadsHand = GameObject.Find("Dad'sHand");
     }
 
     private void DropNewBox()
     {
         _newBox.GetComponent<CircularMovement>()?.Remove();
         _newBoxMoveSequence.Kill();
+        _dadsHand.GetComponent<SpriteRenderer>().enabled = false;
 
         // Reapply gravity scale to new box
         _newBox.GetComponent<Rigidbody2D>().gravityScale = 1;
-
     }
 
     private void SpawnNewBox()
     {
         _newBox = Instantiate(_prefabs[Random.Range(0, _prefabs.Length)], transform.position, Quaternion.identity);
+
+        _dadsHand.transform.parent = _newBox.transform;
+        var dadSpriteRend = _dadsHand.GetComponent<SpriteRenderer>();
+        _dadsHand.transform.localPosition = new Vector3(0, _newBox.GetComponent<SpriteRenderer>().size.y / 2 + dadSpriteRend.size.y / 2, 0);
+        _dadsHand.transform.rotation = Quaternion.identity;
+        dadSpriteRend.enabled = true;
     }
 
     private void BackForthHorizontalSwing()
