@@ -40,23 +40,27 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_canDropNewBox)
+        if (_canDropNewBox && !Pause._gamePaused)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0)
             {
                 IEnumerator MyCouroutine()
                 {
-                    _canDropNewBox = false;
-                    DropNewBox();
-                    yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
-                    UpdateCameraSpawnerPos();
-                    yield return new WaitForSeconds(_updateCameraPosDuration);
-                    GetCamLeftRightPos();
-                    SpawnNewBox();
-                    RandomizeBoxMovement();
+                    if (!Pause._gamePaused)
+                    {
+                        _canDropNewBox = false;
+                        DropNewBox();
+                        yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
+                        UpdateCameraSpawnerPos();
+                        yield return new WaitForSeconds(_updateCameraPosDuration);
+                        GetCamLeftRightPos();
+                        SpawnNewBox();
+                        RandomizeBoxMovement();
 
-                    _canDropNewBox = true;
+                        _canDropNewBox = true;
+                    }
                     yield break;
+
                 }
                 StartCoroutine(MyCouroutine());
             }
