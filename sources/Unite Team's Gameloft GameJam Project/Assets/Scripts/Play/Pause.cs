@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
@@ -42,5 +43,11 @@ public class Pause : MonoBehaviour
         Physics2D.autoSimulation = true;
         DOTween.PlayAll();
         _gamePaused = false;
+    }
+
+    public void RestartGame()
+    {
+        ResumeGame();
+        SceneManager.LoadScene("Play");
     }
 }
