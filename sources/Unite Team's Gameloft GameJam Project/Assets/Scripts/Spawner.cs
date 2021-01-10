@@ -26,6 +26,8 @@ public class Spawner : MonoBehaviour
 
     private static bool _canDropNewBox = true;
 
+    private static float _offsetYfromTop = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,14 +68,14 @@ public class Spawner : MonoBehaviour
         GetCamLeftRightPos();
 
         // Start position is at camera's top right edge world pos
-        transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y, 0);
+        transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y - _offsetYfromTop, 0);
 
         _camHeight = _mainCamera.orthographicSize * 2.0f;
     }
 
     private void DropNewBox()
     {
-        _newBox.GetComponent<BoxCircularMovement>()?.Remove();
+        _newBox.GetComponent<CircularMovement>()?.Remove();
         _newBoxMoveSequence.Kill();
 
         // Reapply gravity scale to new box
@@ -106,7 +108,7 @@ public class Spawner : MonoBehaviour
         .OnComplete(() =>
         {
             GetCamLeftRightPos();
-            transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y, transform.position.z);
+            transform.position = new Vector3(_camTopRightPos.x, _camTopRightPos.y - _offsetYfromTop, transform.position.z);
         });
     }
 
@@ -119,16 +121,15 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            BackForthHorizontalSwing();
-            // BoxCircularMovement();
+            BoxCircularMovement();
         }
     }
 
     private void BoxCircularMovement()
     {
         var camTopCenterPos = _mainCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height, 0));
-        _newBox.transform.position = new Vector3(camTopCenterPos.x, camTopCenterPos.y, transform.position.z);
-        _newBox.AddComponent<BoxCircularMovement>();
+        _newBox.transform.position = new Vector3(camTopCenterPos.x, camTopCenterPos.y - _offsetYfromTop, transform.position.z);
+        _newBox.AddComponent<CircularMovement>();
     }
 
     private void OnDestroy()

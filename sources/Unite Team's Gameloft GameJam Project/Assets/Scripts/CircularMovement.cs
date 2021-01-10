@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxCircularMovement : MonoBehaviour
+public class CircularMovement : MonoBehaviour
 {
     [SerializeField] private float _rotateSpeed = 2f;
-    [SerializeField] private float _radius = 2f;
+    [SerializeField] private float _radius = 1f;
 
     private Vector2 _centre;
     private float _angle;

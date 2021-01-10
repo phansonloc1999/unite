@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 976323257}
   - component: {fileID: 976323258}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _remainingTime: 0
-  _maxPlayTime: 10
+  _maxPlayTime: 60
   _text: {fileID: 940446777}
 --- !u!1 &996274551
 GameObject:
