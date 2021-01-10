@@ -38,11 +38,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Book
       objectReference: {fileID: 0}
-    - target: {fileID: 4077288820712146120, guid: b6fe169074620a54eadecf838d7cd350,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 4077288820712146121, guid: b6fe169074620a54eadecf838d7cd350,
         type: 3}
       propertyPath: m_RootOrder

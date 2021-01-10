@@ -19,11 +19,13 @@ public class GameOver : MonoBehaviour
 
     public void ToMenu()
     {
+        Pause._gamePaused = false;
         SceneManager.LoadScene("Menu");
     }
 
     public void PlayAgain()
     {
+        Pause._gamePaused = false;
         SceneManager.LoadScene("Play");
     }
 }

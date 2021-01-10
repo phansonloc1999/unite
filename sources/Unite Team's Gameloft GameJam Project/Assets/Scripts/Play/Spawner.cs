@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
 
     private static bool _canDropNewBox = true;
 
-    private static float _offsetYfromTop = 0.5f;
+    private static float _offsetYfromTop = 1f;
     private static GameObject _dadsHand = null;
 
     // Start is called before the first frame update
