@@ -46,19 +46,19 @@ public class Spawner : MonoBehaviour
             {
                 IEnumerator MyCouroutine()
                 {
-                    if (!Pause._gamePaused)
-                    {
-                        _canDropNewBox = false;
-                        DropNewBox();
-                        yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
-                        UpdateCameraSpawnerPos();
-                        yield return new WaitForSeconds(_updateCameraPosDuration);
-                        GetCamLeftRightPos();
-                        SpawnNewBox();
-                        RandomizeBoxMovement();
 
-                        _canDropNewBox = true;
-                    }
+                    _canDropNewBox = false;
+                    DropNewBox();
+                    yield return new WaitForSeconds(_dropAndSpawnBoxInterval);
+                    UpdateCameraSpawnerPos();
+
+                    yield return new WaitForSeconds(_updateCameraPosDuration);
+                    GetCamLeftRightPos();
+                    SpawnNewBox();
+                    RandomizeBoxMovement();
+
+                    _canDropNewBox = true;
+
                     yield break;
 
                 }
