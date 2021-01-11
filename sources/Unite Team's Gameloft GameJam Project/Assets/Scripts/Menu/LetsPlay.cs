@@ -17,8 +17,8 @@ public class LetsPlay : MonoBehaviour
 
     }
 
-    public void LoadPlayScene()
+    public void LoadTutorialScene()
     {
-        SceneManager.LoadScene("Play"); SceneManager.LoadScene("Play");
+        SceneManager.LoadScene("Tutorial");
     }
 }
