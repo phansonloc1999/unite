@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LetsPlay : MonoBehaviour
+public class Credit : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -17,13 +17,8 @@ public class LetsPlay : MonoBehaviour
 
     }
 
-    public void LoadTutorialScene()
+    public void ToMenu()
     {
-        SceneManager.LoadScene("Tutorial");
-    }
-
-    public void LoadCreditScene()
-    {
-        SceneManager.LoadScene("Credit");
+        SceneManager.LoadScene("Menu");
     }
 }

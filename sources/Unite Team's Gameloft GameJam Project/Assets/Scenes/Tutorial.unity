@@ -378,7 +378,7 @@ MonoBehaviour:
   - {fileID: 91022449}
   - {fileID: 1893735174}
   - {fileID: 2142752743}
-  _eachUiElementDuration: 8
+  _eachUiElementDuration: 5
 --- !u!1 &1449060992
 GameObject:
   m_ObjectHideFlags: 0
