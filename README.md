@@ -7,4 +7,6 @@ Từ Gia Hy	giahygiahytu@gmail.com
 
 Phan Sơn Lộc	phansonloc1999@gmail.com
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://fb.watch/lDfojVX_J8/)
+## Demo video
+
+https://fb.watch/lDfojVX_J8/
